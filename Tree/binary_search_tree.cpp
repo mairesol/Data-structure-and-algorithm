@@ -34,12 +34,12 @@ void createTree(Tree &t)
 {
     t = NULL;
 }
-int insert(Tree &t, int x)
+void insert(Tree &t, int x)
 {
     if (t != NULL)
     {
         if (x == t->data)
-            return 0;
+            return;
         if (x < t->data)
             insert(t->left, x);
         insert(t->right, x);
@@ -48,10 +48,9 @@ int insert(Tree &t, int x)
     {
         t = new TNode;
         if (t == NULL)
-            return -1;
+            return;
         t->data = x;
         t->left = t->right = NULL;
-        return 1;
     }
 }
 

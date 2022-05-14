@@ -19,6 +19,7 @@ void LRN(Tree); // post - order
 int numberNode(Tree);
 int numberLeafNode(Tree);
 int height(Tree);
+void clear(Tree);
 
 int main()
 {
@@ -85,4 +86,14 @@ int height(Tree t)
     if (t == NULL)
         return 0;
     return 1 + max(height(t->left), height(t->right));
+}
+void clear(Tree t)
+{
+    if (t != NULL)
+    {
+        clear(t->left);
+        clear(t->right);
+        delete t;
+        t = NULL;
+    }
 }
