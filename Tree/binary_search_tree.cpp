@@ -42,7 +42,8 @@ void insert(Tree &t, int x)
             return;
         if (x < t->data)
             insert(t->left, x);
-        insert(t->right, x);
+        else
+            insert(t->right, x);
     }
     else
     {
@@ -77,25 +78,26 @@ void remove(Tree &t, int x)
             remove(t->right, x);
         else
         {
-            TNode *pHuy = t;
+            TNode *pDelete = t;
             if (t->left == NULL)
                 t = t->right;
             else if (t->right == NULL)
                 t = t->left;
             else
-                SearchStandFor(pHuy, t->right);
-            delete pHuy;
+                searchStandFor(pDelete, t->right);
+            delete pDelete;
         }
     }
 }
-void SearchStandFor(Tree &pHuy, Tree &pTM) // Nút có khoá nhỏ nhất (trái nhất) bên cây con phải node cần xóa
+
+void searchStandFor(Tree &pDelete, Tree &pStand) // Nút có khoá nhỏ nhất (trái nhất) bên cây con phải node cần xóa
 {
-    if (pTM->left != NULL)
-        SearchStandFor(pHuy, pTM->left);
+    if (pStand->left != NULL)
+        searchStandFor(pDelete, pStand->left);
     else
     {
-        pHuy->data = pTM->data;
-        pHuy = pTM;
-        pTM = pTM->right;
+        pDelete->data = pStand->data;
+        pDelete = pStand;
+        pStand = pStand->right;
     }
 }

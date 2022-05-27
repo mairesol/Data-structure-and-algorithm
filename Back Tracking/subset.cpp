@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void subset(vector<int> &v, int n, int k, int i)
+void subset(vector<int> v, int n, int k, int i)
 {
     for (int j = v[i - 1] + 1; j <= n - k + i; j++)
     {
@@ -24,8 +24,7 @@ int main()
     int n, k;
     cin >> n >> k;
     vector<int> v(k + 1);
-    for (int i = 0; i <= k; i++)
-        v[i] = i;
+    v[0] = 0;
 
     subset(v, n, k, 1);
     return 0;

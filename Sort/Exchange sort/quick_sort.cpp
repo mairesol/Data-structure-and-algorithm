@@ -1,32 +1,34 @@
-#include <iostream>
 #include <algorithm>
+#include <iostream>
 
 using namespace std;
 
-int partition(int arr[], int low, int high)
+void quick_sort(int arr[], int left, int right) // Chon phan tu giua lam truc
 {
-    int pivot = arr[high];
-    int i = low - 1;
-    for (int j = low; j < high; j++)
+    if (left < right)
     {
-        if (arr[j] < pivot)
+        int i, j, pivot;
+        pivot = arr[(left + right) / 2];
+        i = left;
+        j = right;
+        while (i < j)
         {
-            i++;
-            swap(arr[i], arr[j]);
+            while (arr[i] < pivot)
+                i++;
+            while (arr[j] > pivot)
+                j--;
+            if (i <= j)
+            {
+                swap(arr[i], arr[j]);
+                i++;
+                j--;
+            }
         }
-    }
-    swap(arr[high], arr[i + 1]);
-    return i + 1;
-}
 
-void quick_sort(int arr[], int low, int high)
-{
-    if (low < high)
-    {
-        int pi = partition(arr, low, high);
-
-        quick_sort(arr, low, pi - 1);
-        quick_sort(arr, pi + 1, high);
+        if (left < j)
+            quick_sort(arr, left, j);
+        if (i < right)
+            quick_sort(arr, i, right);
     }
 }
 

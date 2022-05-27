@@ -19,7 +19,7 @@ void LRN(Tree); // post - order
 int numberNode(Tree);
 int numberLeafNode(Tree);
 int height(Tree);
-void clear(Tree);
+void clear(Tree &);
 
 int main()
 {
@@ -73,6 +73,14 @@ int numberNode(Tree t)
         return 0;
     return 1 + numberNode(t->left) + numberNode(t->right);
 }
+int numberNode_2_child(Tree t)
+{
+    if (t == NULL)
+        return 0;
+    if (t->left != NULL && t->right != NULL)
+        return 1 + numberNode_2_child(t->left) + numberNode_2_child(t->right);
+    return numberNode_2_child(t->left) + numberNode_2_child(t->right);
+}
 int numberLeafNode(Tree t)
 {
     if (t == NULL)
@@ -87,7 +95,7 @@ int height(Tree t)
         return 0;
     return 1 + max(height(t->left), height(t->right));
 }
-void clear(Tree t)
+void clear(Tree &t)
 {
     if (t != NULL)
     {

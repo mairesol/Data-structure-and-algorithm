@@ -26,11 +26,11 @@ public:
     void insert_tail(Node *);
     void insert_after(Node *, Node *);
     void insert_before(Node *, Node *);
-    void erase_head();
-    void erase_tail();
-    void erase_after(Node *);
-    void erase_before(Node *);
-    void erase(int);
+    void remove_head();
+    void remove_tail();
+    void remove_after(Node *);
+    void remove_before(Node *);
+    void remove(int);
     Node *search(int);
     void clear();
     void selection_sort();
@@ -112,7 +112,7 @@ void List ::insert_before(Node *q, Node *p)
             p->prev->next = p;
     }
 }
-void List ::erase_head()
+void List ::remove_head()
 {
     if (!empty()) // Nếu list không rỗng
     {
@@ -124,7 +124,7 @@ void List ::erase_head()
             tail = NULL;
     }
 }
-void List ::erase_tail()
+void List ::remove_tail()
 {
     if (!empty()) // Nếu list không rỗng
     {
@@ -136,7 +136,7 @@ void List ::erase_tail()
             head = NULL;
     }
 }
-void List ::erase_after(Node *q)
+void List ::remove_after(Node *q)
 {
     if (q != NULL)
     {
@@ -152,7 +152,7 @@ void List ::erase_after(Node *q)
         }
     }
 }
-void List ::erase_before(Node *q)
+void List ::remove_before(Node *q)
 {
     if (q != NULL)
     {
@@ -168,7 +168,7 @@ void List ::erase_before(Node *q)
         }
     }
 }
-void List ::erase(int x)
+void List ::remove(int x)
 {
     Node *p = head, *q = NULL;
     while (p != NULL && p->data != x)
@@ -179,9 +179,9 @@ void List ::erase(int x)
     if (p == NULL) // Nếu list không có x
         return;
     if (q != NULL) // Nếu head không chứa x
-        erase_after(q);
+        remove_after(q);
     else // Nếu head chứa x
-        erase_head();
+        remove_head();
 }
 
 Node *List ::search(int x)

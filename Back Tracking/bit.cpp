@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void bit(string &b, int i)
+void bit(string b, int i)
 {
     for (int j = 0; j <= 1; j++)
     {
